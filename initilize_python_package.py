@@ -18,28 +18,28 @@ os.chdir(name)
 os.mkdir("src")
 
 # Create __init__.py file in src directory
-with open("src/__init__.py", "w") as f:
+with open("src/__init__.py", "w", encoding="utf_8") as f:
     f.write("")
 
 # Create README file
-with open("README.md", "w") as f:
+with open("README.md", "w", encoding="utf_8") as f:
     f.write(f"# {name}\n\n{description}")
 
 # Download .gitignore file from GitHub repository
 url = "https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore"
 with urllib.request.urlopen(url) as response:
-    with open(".gitignore", "w") as f:
+    with open(".gitignore", "w", encoding="utf_8") as f:
         f.write(response.read().decode())
 
 # Create requirements.txt file
-with open("requirements.txt", "w") as f:
+with open("requirements.txt", "w", encoding="utf_8") as f:
     for package in packages:
         f.write(package.strip())
         f.write("\n")
     f.write("-e .")
 
 # Create setup.py file
-with open("setup.py", "w") as f:
+with open("setup.py", "w", encoding="utf_8") as f:
     f.write(f"""from setuptools import find_packages,setup
 from typing import List
 
@@ -73,7 +73,7 @@ setup(
 # Git init
 os.system("git init")
 os.system("git add .")
-os.system('git commit -m "Initilize the {name}"')
+os.system(f'git commit -m "Initilize the {name}"')
 os.system("git branch -M main")
 
 # Create virtual environment and activate it
